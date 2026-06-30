@@ -19,4 +19,4 @@ Open `index.html` in a browser (or visit the live link above). Type a JavaScript
 
 ## License
 
-© 2014–2026 Dusan B. Jovanovic (dbj@dbj.org). See [ip-advisory.md](ip-advisory.md) for licensing terms.
+Code: MIT, see [LICENSE](LICENSE). © 2014–2026 Dusan B. Jovanovic (dbj@dbj.org). See [ip-advisory.md](ip-advisory.md) for broader IP/licensing terms.
