@@ -2,6 +2,8 @@
 
 A single self-contained `index.html` page: a textarea-based JavaScript REPL. No build step, no server, no dependencies beyond what's bundled inline.
 
+Originally written circa 2014 (bundled jQuery 1.11.1, Underscore 1.7.0, and RequireJS 2.1.15 all date to that year); moved into this repo and onto GitHub Pages in 2026.
+
 **Live:** https://dbjdbj.github.io/reallysmallinterpreter/
 
 ## Usage
@@ -17,4 +19,4 @@ Open `index.html` in a browser (or visit the live link above). Type a JavaScript
 
 ## License
 
-© Dusan B. Jovanovic (dbj@dbj.org). See [ip-advisory.md](ip-advisory.md) for licensing terms.
+© 2014–2026 Dusan B. Jovanovic (dbj@dbj.org). See [ip-advisory.md](ip-advisory.md) for licensing terms.
