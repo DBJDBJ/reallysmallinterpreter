@@ -1,4 +1,4 @@
-# Really Small Off-Line JS Interpreter™
+# Really Small JS Interpreter™
 
 A single self-contained `index.html` page: a textarea-based JavaScript REPL. No build step, no server, no dependencies beyond what's bundled inline.
 

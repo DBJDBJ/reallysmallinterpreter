@@ -3,6 +3,7 @@
   - [Why would anyone use this?](#why-would-anyone-use-this)
   - [Whole-buffer evaluation, not line-oriented](#whole-buffer-evaluation-not-line-oriented)
   - [Output stays inline, at the cursor](#output-stays-inline-at-the-cursor)
+  - [Download it and use it offline](#download-it-and-use-it-offline)
   - [Loading Underscore and RequireJS on demand](#loading-underscore-and-requirejs-on-demand)
   - [Using bundled libraries from interpreter code](#using-bundled-libraries-from-interpreter-code)
   - [Why](#why)
@@ -62,6 +63,12 @@ See [Output stays inline, at the cursor](#output-stays-inline-at-the-cursor) for
 The result of each whole-buffer evaluation is inserted as a `\t// => <result>` comment directly at the current cursor position — not appended to the end of the buffer. Place the cursor anywhere in the text and press `Ctrl+Enter`; the result lands right there, and the cursor moves to just after the inserted comment.
 
 There is no separate output panel or console. The textarea is simultaneously the input, the program, and the output log — see [Whole-buffer evaluation, not line-oriented](#whole-buffer-evaluation-not-line-oriented) for why output has to take the form of an inert JS comment rather than free text.
+
+## Download it and use it offline
+
+`index.html` is a self-contained page: open it, save it ("Save Page As" or just copy the file), and it runs identically from local disk, no server or network required. The core interpreter — the textarea, `Ctrl+Enter` evaluation, jQuery — works fully offline because jQuery is inlined directly into the file (see [Loading Underscore and RequireJS on demand](#loading-underscore-and-requirejs-on-demand) for why that's not true of the other two bundled libraries).
+
+This is a separate concern from the `Alt+1`/`Alt+2` inelegance described next: a downloaded, standalone copy of `index.html` is a fully working interpreter on its own. The only thing that breaks when the file is moved away from its siblings is the on-demand loading of Underscore and RequireJS — everything else about the page, including its core purpose as an offline JS scratch pad, is unaffected.
 
 ## Loading Underscore and RequireJS on demand
 
