@@ -10,6 +10,7 @@
   - [What's reachable from user code](#whats-reachable-from-user-code)
   - [Using jQuery or Underscore from your own code](#using-jquery-or-underscore-from-your-own-code)
   - [Practical implication](#practical-implication)
+  - [jQuery useful one-liners](#jquery-useful-one-liners)
 - [Knowledge Base](#knowledge-base)
   - [UMD wrappers and AMD modules](#umd-wrappers-and-amd-modules)
 
@@ -144,6 +145,17 @@ Nothing in this page sandboxes or scopes user input away from the page's own glo
 
 This is fine for a personal, off-line scratch tool. It is **not** an isolation boundary — worth remembering if this page is ever embedded somewhere less trusted (e.g. an iframe fed by untrusted input, or a shared/public deployment where arbitrary users might paste code from elsewhere).
 
+## jQuery useful one-liners
+
+Quick reference for one-line expressions that produce a useful inline output. Type into the editor and `Ctrl+Enter`.
+
+**Dump an object/element readably (real newlines and tabs, not `\n`/`\t` escapes):**
+
+```js
+JSON.stringify($("body").html(), null, "\t").replace(/\\n/g, "\n").replace(/\\t/g, "\t")
+```
+
+`JSON.stringify(x)` alone is the fastest way to dump any plain object or array. Raw jQuery objects stringify to `[object Object]` and aren't useful directly — pull out `.html()`, `.text()`, `.val()`, etc. first. Note: since output is inserted as a `//` comment (see [Output stays inline, at the cursor](#output-stays-inline-at-the-cursor)), a dump containing real newlines will break re-eval safety unless each line is itself commented out.
 
 # Knowledge Base 
 

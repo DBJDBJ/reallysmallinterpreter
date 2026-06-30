@@ -99,8 +99,9 @@ manual: https://github.com/DBJDBJ/reallysmallinterpreter/blob/main/manual.md
 			// print( EV.which + "\t + \t" + EV.ctrlKey);
 			if (EV.ctrlKey)
             if (EV.which == 13) {
-			$editor.insertAtCursor("\t// => " + dbj_eval($editor.val()) + " \n" );
-	//$editor.val( $editor.val() + "\t// => " + dbj_eval($editor.val()) + " \n" );
+			var dbj_result = dbj_eval($editor.val());
+			$editor.focusEnd();
+			$editor.insertAtCursor("\n\t// => " + dbj_result + " \n" );
              EV.cancelBubble = true;
 			 return false; // same as EV.stopPropagation() ?
 			}
