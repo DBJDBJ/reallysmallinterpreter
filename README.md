@@ -10,12 +10,11 @@ Originally written circa 2014 (bundled jQuery 1.11.1, Underscore 1.7.0, and Requ
 
 Open `index.html` in a browser (or visit the live link above). Type a JavaScript expression into the editor and press `Ctrl+Enter` to evaluate it. The result is appended inline as a comment.
 
-## Repo layout
+---
 
-- `index.html` — the entire application (markup, inline styles, bundled jQuery/Underscore/RequireJS, eval logic)
-- `favicon/` — site favicon set
-- `dbj-org-logo.jpg` — DBJ logo
-- `ip-advisory.md` — IP / licensing advisory covering DBJ-authored material in this repo
+## Elsewhere
+
+If you want to practice or test these snippets instantly without setting up a local environment, you can use interactive playgrounds like the [W3Schools Online Editor](https://www.w3schools.com/jquery/jquery_editor.asp), [SitePoint's JS Fiddle Guide](https://www.sitepoint.com/js-fiddle-online-editor-jquery/), or [OneCompiler jQuery Sandbox](https://onecompiler.com/jquery).
 
 ## License
 

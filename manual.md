@@ -4,7 +4,7 @@
   - [Whole-buffer evaluation, not line-oriented](#whole-buffer-evaluation-not-line-oriented)
   - [Output stays inline, at the cursor](#output-stays-inline-at-the-cursor)
   - [Download it and use it offline](#download-it-and-use-it-offline)
-  - [Loading Underscore and RequireJS on demand](#loading-underscore-and-requirejs-on-demand)
+  - [Loading libraries and content on demand](#loading-underscore-and-requirejs-on-demand)
   - [Using bundled libraries from interpreter code](#using-bundled-libraries-from-interpreter-code)
   - [Why](#why)
   - [What's reachable from user code](#whats-reachable-from-user-code)
@@ -75,20 +75,23 @@ This is a separate concern from the `Alt+1`/`Alt+2` inelegance described next: a
 
 Only **jQuery** is loaded unconditionally, inlined directly in `index.html`, because the interpreter's own code depends on it (DOM selection, `setSelection`/`focusEnd`/`insertAtCursor`). **Underscore.js** and **RequireJS** are not used by the page itself — see [Using jQuery or Underscore from your own code](#using-jquery-or-underscore-from-your-own-code) — so they are not loaded by default. Loading them is opt-in, via keyboard shortcut:
 
-| Shortcut | Loads | Source file |
+| Shortcut | What it does | Source file |
 |---|---|---|
-| `Alt+1` | Underscore.js 1.7.0 | `underscore-1.7.0.js` |
-| `Alt+2` | RequireJS 2.1.15 | `require-2.1.15.js` |
+| `Alt+1` | Execute Underscore.js 1.7.0 (makes `_` available) | `underscore-1.7.0.js` |
+| `Alt+2` | Execute RequireJS 2.1.15 (makes `require`/`define` available) | `require-2.1.15.js` |
+| `Alt+3` | Insert jQuery one-liners cheatsheet as text into the editor | `jqry_oneliners.js` |
 
-Pressing the shortcut injects a `<script src="...">` tag pointing at the sibling file and reports the outcome as an inline comment at the cursor, the same way evaluation results are reported:
+`Alt+1` and `Alt+2` inject a `<script src="...">` tag — the file is fetched and **executed** as JavaScript, making its globals available. `Alt+3` works differently: it fetches `jqry_oneliners.js` and **inserts its content as text** into the editor buffer at the end, so you can read, edit, and selectively run the snippets. The file is a large `/* ... */` comment by design, so pasting it in won't accidentally execute anything on the next `Ctrl+Enter`.
+
+`Alt+1`/`Alt+2` report their outcome as an inline comment:
 
 - `// => underscore 1.7.0 loaded` — first successful load
 - `// => underscore 1.7.0 already loaded` — pressed again after it's already loaded; no re-fetch, no duplicate script tag
 - `// => failed to load underscore 1.7.0 (underscore-1.7.0.js)` — the file could not be fetched
 
-**This only works if `underscore-1.7.0.js` / `require-2.1.15.js` are reachable from wherever `index.html` is being served or opened from** — either alongside it on disk, or on the same GitHub Pages deployment. If `index.html` is copied out and used standalone, without those sibling files, `Alt+1`/`Alt+2` will fail to load (you'll see the "failed to load" comment). jQuery is unaffected by this, since it stays inlined in the page itself regardless.
+**All three shortcuts only work if their sibling `.js` file is reachable** — either alongside `index.html` on disk, or on the same GitHub Pages deployment. If `index.html` is copied out standalone without those files, the shortcuts will fail. jQuery is unaffected since it is inlined in the page itself.
 
-`Ctrl+1`/`Ctrl+2` were considered for these shortcuts first, but rejected: browsers already bind `Ctrl+1`...`Ctrl+8` to tab switching, so those keys never reach the page. `Alt+1`/`Alt+2` are not claimed by any default browser or OS shortcut on Windows.
+`Ctrl+1`/`Ctrl+2` were considered for these shortcuts first, but rejected: browsers already bind `Ctrl+1`...`Ctrl+8` to tab switching, so those keys never reach the page. `Alt+1`/`Alt+2`/`Alt+3` are not claimed by any default browser or OS shortcut on Windows.
 
 ## Using bundled libraries from interpreter code
 
